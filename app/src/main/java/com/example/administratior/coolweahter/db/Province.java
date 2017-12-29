@@ -9,7 +9,7 @@ import org.litepal.crud.DataSupport;
 //Bean类:用于存放从服务器获得的province信息
 public class Province extends DataSupport{
     private int id;//记录省的id
-    private int provinceName;//记录省名
+    private String provinceName;//记录省名
     private int provinceCode;//记录省的代号
 
     public int getId() {
@@ -20,11 +20,11 @@ public class Province extends DataSupport{
         this.id = id;
     }
 
-    public int getProvinceName() {
+    public String getProvinceName() {
         return provinceName;
     }
 
-    public void setProvinceName(int provinceName) {
+    public void setProvinceName(String provinceName) {
         this.provinceName = provinceName;
     }
 

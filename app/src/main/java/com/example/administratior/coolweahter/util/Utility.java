@@ -1,10 +1,13 @@
 package com.example.administratior.coolweahter.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.administratior.coolweahter.db.City;
 import com.example.administratior.coolweahter.db.County;
 import com.example.administratior.coolweahter.db.Province;
+import com.example.administratior.coolweahter.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,4 +83,19 @@ public class Utility{
         }
         return false;//失败则返回false
     }
+
+    //解析处理服务器返回的天气信息数据
+    public static Weather handleWeatherResponse(String response){
+        try{
+            //处理天气信息数据的具体逻辑
+            JSONObject jsonObject=new JSONObject(response);
+            JSONArray jsonArray=jsonObject.getJSONArray("HeWeather");
+            String weatherContent=jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent,Weather.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
